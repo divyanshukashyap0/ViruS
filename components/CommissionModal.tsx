@@ -110,7 +110,7 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-vir-bg/95 backdrop-blur-xl"
+          className="fixed inset-0 z-[100] flex items-start md:items-center justify-center bg-vir-bg/95 backdrop-blur-xl overflow-y-auto"
         >
           {/* Close Button */}
           <button 
@@ -136,7 +136,7 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
             onSubmit={handleSubmit}
             action="https://formsubmit.co/optistyle.india@gmail.com"
             method="POST"
-            className="w-full max-w-3xl px-6 md:px-0 relative"
+            className="w-full max-w-3xl px-4 sm:px-6 md:px-0 py-16 md:py-0 relative"
           >
             
             {/* Step Label */}
