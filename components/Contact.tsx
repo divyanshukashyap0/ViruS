@@ -8,6 +8,32 @@ export const Contact: React.FC = () => {
   const inputBorderColor = "rgba(255, 255, 255, 0.08)"; // vir-border
   const inputFocusColor = "#3B82F6"; // vir-accent
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (typeof window === 'undefined') return;
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      payload[key] = String(value);
+    });
+
+    try {
+      await fetch('https://formsubmit.co/ajax/optistyle.india@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+    } finally {
+      form.reset();
+    }
+  };
+
   return (
     <Section id="contact" className="min-h-[80vh] flex flex-col justify-center">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -50,8 +76,7 @@ export const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="glass-card p-8 md:p-12 rounded-2xl space-y-8"
-          action="https://formsubmit.co/optistyle.india@gmail.com"
-          method="POST"
+          onSubmit={handleSubmit}
         >
           <input type="hidden" name="_subject" value="New contact from ViruS site" />
           <div className="space-y-2 group">

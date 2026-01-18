@@ -26,28 +26,35 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (typeof window === 'undefined') return;
 
-    const endpoint = 'https://formsubmit.co/optistyle.india@gmail.com';
-    const form = new FormData();
-    form.append('scope', formData.scope.join(', ') || 'N/A');
-    form.append('budget', formData.budget || 'N/A');
-    form.append('details', formData.details || 'N/A');
-    form.append('name', formData.name || 'N/A');
-    form.append('email', formData.email || 'N/A');
-    form.append('company', formData.company || 'N/A');
-    form.append('_subject', 'New commission brief from ViruS site');
+    const endpoint = 'https://formsubmit.co/ajax/optistyle.india@gmail.com';
 
-    fetch(endpoint, {
-      method: 'POST',
-      body: form,
-      mode: 'no-cors'
-    }).finally(() => {
+    const payload = {
+      scope: formData.scope.join(', ') || 'N/A',
+      budget: formData.budget || 'N/A',
+      details: formData.details || 'N/A',
+      name: formData.name || 'N/A',
+      email: formData.email || 'N/A',
+      company: formData.company || 'N/A',
+      _subject: 'New commission brief from ViruS site'
+    };
+
+    try {
+      await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+    } finally {
       setDirection(1);
       setCurrentStep(steps.length - 1);
-    });
+    }
   };
 
   const handleBack = () => {
@@ -166,6 +173,7 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
                       {['Web Application', 'Marketing Site', 'E-Commerce', 'Design System', 'Mobile App', 'Consultancy'].map((item) => (
                         <button
                           key={item}
+                          type="button"
                           onClick={() => toggleScope(item)}
                           className={`flex items-center justify-between p-6 border text-left transition-all duration-300 hover-trigger ${formData.scope.includes(item) ? 'border-vir-accent bg-vir-accent/5 text-white' : 'border-vir-border text-vir-muted hover:border-vir-muted'}`}
                         >
@@ -187,6 +195,7 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
                       {['Seed (< $10k)', 'Series A ($10k - $30k)', 'Growth ($30k - $60k)', 'Enterprise ($60k+)'].map((range) => (
                         <button
                           key={range}
+                          type="button"
                           onClick={() => setFormData({ ...formData, budget: range })}
                           className={`w-full flex items-center justify-between p-6 border text-left transition-all duration-300 hover-trigger ${formData.budget === range ? 'border-vir-accent bg-vir-accent/5 text-white' : 'border-vir-border text-vir-muted hover:border-vir-muted'}`}
                         >
