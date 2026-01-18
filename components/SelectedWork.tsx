@@ -15,29 +15,8 @@ const projects: SelectedProject[] = [
     id: '01',
     client: 'OptiStyle India',
     category: 'E-Commerce',
-    description: 'OptiStyle’s goal is to deliver accurate eye testing through professional care, modern equipment, and a patient-first approach.',
-    year: '2025-2026'
-  },
-  {
-    id: '02',
-    client: 'Maison Étude',
-    category: 'E-Commerce',
-    description: 'A headless architecture for a heritage fashion house.',
-    year: '2023'
-  },
-  {
-    id: '03',
-    client: 'Carbon/Neutral',
-    category: 'Data Viz',
-    description: 'Real-time emissions tracking dashboard for public sector.',
-    year: '2024'
-  },
-  {
-    id: '04',
-    client: 'Oculus Archive',
-    category: 'Research',
-    description: 'Digital preservation system for rare brutalist architecture.',
-    year: '2024'
+    description: 'A full e-commerce experience for OptiStyle India, offering high-quality eyewear at honest prices with doorstep delivery and professional eye-care support.',
+    year: '2025 — Present'
   }
 ];
 
@@ -49,7 +28,7 @@ export const SelectedWork: React.FC = () => {
         {/* Label */}
         <div className="md:col-span-3">
           <span className="font-sans text-xs uppercase tracking-widest text-vir-muted sticky top-24">
-            (04) &mdash; Selected Output
+            (01) &mdash; Project
           </span>
         </div>
 
@@ -76,6 +55,14 @@ export const SelectedWork: React.FC = () => {
                 <p className="font-sans text-sm md:text-base text-vir-muted max-w-lg group-hover:text-vir-text transition-colors duration-300">
                   {project.description}
                 </p>
+                <a
+                  href="https://optistyle-india.vercel.app/#/shop"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-vir-muted hover:text-vir-accent hover-trigger"
+                >
+                  Visit OptiStyle
+                </a>
               </motion.div>
             ))}
           </div>

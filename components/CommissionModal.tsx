@@ -26,6 +26,30 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (typeof window === 'undefined') return;
+
+    const endpoint = 'https://formsubmit.co/optistyle.india@gmail.com';
+    const form = new FormData();
+    form.append('scope', formData.scope.join(', ') || 'N/A');
+    form.append('budget', formData.budget || 'N/A');
+    form.append('details', formData.details || 'N/A');
+    form.append('name', formData.name || 'N/A');
+    form.append('email', formData.email || 'N/A');
+    form.append('company', formData.company || 'N/A');
+    form.append('_subject', 'New commission brief from ViruS site');
+
+    fetch(endpoint, {
+      method: 'POST',
+      body: form,
+      mode: 'no-cors'
+    }).finally(() => {
+      setDirection(1);
+      setCurrentStep(steps.length - 1);
+    });
+  };
+
   const handleBack = () => {
     if (currentStep > 0) {
       setDirection(-1);
@@ -101,7 +125,12 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
             </div>
           )}
 
-          <div className="w-full max-w-3xl px-6 md:px-0 relative">
+          <form
+            onSubmit={handleSubmit}
+            action="https://formsubmit.co/optistyle.india@gmail.com"
+            method="POST"
+            className="w-full max-w-3xl px-6 md:px-0 relative"
+          >
             
             {/* Step Label */}
             {steps[currentStep] !== 'success' && (
@@ -191,10 +220,16 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
                     <p className="text-vir-muted text-lg">Who is initiating this protocol?</p>
                     
                     <div className="space-y-6">
+                        <input type="hidden" name="scope" value={formData.scope.join(', ') || 'N/A'} />
+                        <input type="hidden" name="budget" value={formData.budget || 'N/A'} />
+                        <input type="hidden" name="details" value={formData.details || 'N/A'} />
+                        <input type="hidden" name="_subject" value="New commission brief from ViruS site" />
                         <div className="space-y-2">
                             <label className="text-xs font-mono text-vir-muted uppercase tracking-wider">Name</label>
                             <input 
                                 type="text"
+                                name="name"
+                                required
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 className="w-full bg-transparent border-b border-vir-border py-4 text-vir-text text-xl focus:outline-none focus:border-vir-accent transition-colors hover-trigger"
@@ -205,6 +240,8 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
                             <label className="text-xs font-mono text-vir-muted uppercase tracking-wider">Email</label>
                             <input 
                                 type="email"
+                                name="email"
+                                required
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 className="w-full bg-transparent border-b border-vir-border py-4 text-vir-text text-xl focus:outline-none focus:border-vir-accent transition-colors hover-trigger"
@@ -215,6 +252,7 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
                             <label className="text-xs font-mono text-vir-muted uppercase tracking-wider">Company / Organization</label>
                             <input 
                                 type="text"
+                                name="company"
                                 value={formData.company}
                                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                                 className="w-full bg-transparent border-b border-vir-border py-4 text-vir-text text-xl focus:outline-none focus:border-vir-accent transition-colors hover-trigger"
@@ -256,6 +294,7 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
             {steps[currentStep] !== 'success' && (
                 <div className="flex justify-between items-center mt-12 pt-8 border-t border-vir-border/20">
                     <button 
+                        type="button"
                         onClick={handleBack}
                         className={`flex items-center gap-2 text-vir-muted hover:text-white transition-colors hover-trigger font-mono text-xs uppercase tracking-wider ${currentStep === 0 ? 'invisible' : ''}`}
                     >
@@ -263,7 +302,8 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
                     </button>
                     
                     <button 
-                        onClick={handleNext}
+                        type={currentStep === 3 ? 'submit' : 'button'}
+                        onClick={currentStep === 3 ? undefined : handleNext}
                         disabled={currentStep === 3 && (!formData.name || !formData.email)}
                         className="group flex items-center gap-2 bg-vir-text text-black px-6 py-3 rounded-sm font-mono text-xs uppercase tracking-wider hover:bg-white transition-colors hover-trigger disabled:opacity-50 disabled:cursor-not-allowed"
                     >
@@ -272,7 +312,7 @@ export const CommissionModal: React.FC<CommissionModalProps> = ({ isOpen, onClos
                     </button>
                 </div>
             )}
-          </div>
+          </form>
         </motion.div>
       )}
     </AnimatePresence>

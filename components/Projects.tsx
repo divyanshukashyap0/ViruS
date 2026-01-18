@@ -9,33 +9,9 @@ const projects: Project[] = [
     id: '01',
     title: 'OptiStyle India',
     category: 'E-Commerce',
-    description: 'OptiStyle’s goal is to deliver accurate eye testing through professional care, modern equipment, and a patient-first approach.',
-    tech: ['React', 'WebGL', 'Socket.io'],
-    year: '2023'
-  },
-  {
-    id: '02',
-    title: 'Maison Étude',
-    category: 'E-Commerce',
-    description: 'Headless commerce experience for a luxury fashion house. Immersive 3D product previews and seamless checkout.',
-    tech: ['Next.js', 'Shopify', 'Three.js'],
-    year: '2023'
-  },
-  {
-    id: '03',
-    title: 'Carbon/Neutral',
-    category: 'Data Visualization',
-    description: 'Public sector dashboard tracking real-time emissions data across 40 cities. Beautiful, accessible data storytelling.',
-    tech: ['D3.js', 'Vue', 'Mapbox'],
-    year: '2024'
-  },
-  {
-    id: '04',
-    title: 'Oculus Archive',
-    category: 'Digital Archive',
-    description: 'Preservation system for brutalist architecture. High-fidelity image zoom and deep-search capabilities.',
-    tech: ['React', 'ElasticSearch', 'AWS'],
-    year: '2024'
+    description: 'OptiStyle India is a modern optical store experience, offering eyeglasses and sunglasses online at honest prices with doorstep delivery across India.',
+    tech: ['Eyeglasses', 'Sunglasses', 'Online Store'],
+    year: '2025 — Present'
   }
 ];
 
@@ -85,6 +61,16 @@ export const Projects: React.FC = () => {
                 </span>
               ))}
             </div>
+            
+            <a
+              href="https://optistyle-india.vercel.app/#/shop"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-vir-muted hover:text-vir-accent hover-trigger"
+            >
+              Visit OptiStyle
+              <ArrowUpRight size={12} />
+            </a>
             
             {/* Hover Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-vir-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />

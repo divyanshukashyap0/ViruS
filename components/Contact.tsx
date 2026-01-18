@@ -24,13 +24,22 @@ export const Contact: React.FC = () => {
           </p>
 
           <div className="pt-12 space-y-4">
-            <a href="mailto:hello@virus.collective" className="block font-mono text-vir-text hover:text-vir-accent transition-colors hover-trigger">
-              hello@virus.collective
+            <a href="mailto:optistyle.india@gmail.com" className="block font-mono text-vir-text hover:text-vir-accent transition-colors hover-trigger">
+              optistyle.india@gmail.com
             </a>
             <div className="flex gap-6">
-               <a href="#" className="font-mono text-xs text-vir-muted hover:text-white uppercase tracking-wider hover-trigger">Twitter</a>
-               <a href="#" className="font-mono text-xs text-vir-muted hover:text-white uppercase tracking-wider hover-trigger">LinkedIn</a>
-               <a href="#" className="font-mono text-xs text-vir-muted hover:text-white uppercase tracking-wider hover-trigger">GitHub</a>
+               <a
+                 href="https://www.linkedin.com/in/divyanshu-kashyap-a5ab99311/"
+                 className="font-mono text-xs text-vir-muted hover:text-white uppercase tracking-wider hover-trigger"
+               >
+                 LinkedIn
+               </a>
+               <a
+                 href="https://github.com/divyanshukashyap0"
+                 className="font-mono text-xs text-vir-muted hover:text-white uppercase tracking-wider hover-trigger"
+               >
+                 GitHub
+               </a>
             </div>
           </div>
         </div>
@@ -41,11 +50,16 @@ export const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="glass-card p-8 md:p-12 rounded-2xl space-y-8"
+          action="https://formsubmit.co/optistyle.india@gmail.com"
+          method="POST"
         >
+          <input type="hidden" name="_subject" value="New contact from ViruS site" />
           <div className="space-y-2 group">
             <label className="text-xs font-mono text-vir-muted uppercase tracking-wider group-focus-within:text-vir-accent transition-colors duration-500">Name</label>
             <motion.input 
               type="text" 
+              name="name"
+              required
               className="w-full bg-transparent border-b py-4 text-vir-text focus:outline-none hover-trigger placeholder:text-vir-muted/20"
               placeholder="John Doe"
               initial={{ borderColor: inputBorderColor }}
@@ -58,6 +72,8 @@ export const Contact: React.FC = () => {
             <label className="text-xs font-mono text-vir-muted uppercase tracking-wider group-focus-within:text-vir-accent transition-colors duration-500">Email</label>
             <motion.input 
               type="email" 
+              name="email"
+              required
               className="w-full bg-transparent border-b py-4 text-vir-text focus:outline-none hover-trigger placeholder:text-vir-muted/20"
               placeholder="john@example.com"
               initial={{ borderColor: inputBorderColor }}
@@ -70,6 +86,7 @@ export const Contact: React.FC = () => {
             <label className="text-xs font-mono text-vir-muted uppercase tracking-wider group-focus-within:text-vir-accent transition-colors duration-500">Message</label>
             <motion.textarea 
               rows={4}
+              name="message"
               className="w-full bg-transparent border-b py-4 text-vir-text focus:outline-none resize-none hover-trigger placeholder:text-vir-muted/20"
               placeholder="Tell us about your vision..."
               initial={{ borderColor: inputBorderColor }}
@@ -78,7 +95,7 @@ export const Contact: React.FC = () => {
             />
           </div>
 
-          <button className="group w-full py-4 bg-vir-text hover:bg-white text-black font-medium rounded-sm flex items-center justify-center gap-2 transition-all duration-300 hover-trigger mt-4">
+          <button type="submit" className="group w-full py-4 bg-vir-text hover:bg-white text-black font-medium rounded-sm flex items-center justify-center gap-2 transition-all duration-300 hover-trigger mt-4">
             <span>Send Message</span>
             <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
           </button>
